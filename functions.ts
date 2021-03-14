@@ -23,9 +23,9 @@ export const transformLine = ([subject, model]: number[][]) => {
 
 	const result = subject.map((number, idx) => number * modFactor - model[idx] * subFactor)
 
-	// console.log('------------------------')
-	// console.log(model)
-	// console.log(subject, '=>', result)
+	console.log('------------------------')
+	console.log(model)
+	console.log(subject, '=>', result)
 
 	return result.map(rationalize)
 }
@@ -42,7 +42,7 @@ export const orderByPivot = (first: number[], second: number[]) => {
 export const transformMatrix = (matrix: number[][]) => {
 	const temp = [...matrix]
 
-	// console.log(temp)
+	console.log(temp)
 
 	for (let i = 0; i < matrix.length; i++) {
 		const model = temp[i]
@@ -53,7 +53,7 @@ export const transformMatrix = (matrix: number[][]) => {
 		}
 	}
 
-	// console.log(temp)
+	console.log(temp)
 
 	for (let i = matrix.length - 1; i > -1; i--) {
 		const model = temp[i]
@@ -81,7 +81,7 @@ export const transformMatrix = (matrix: number[][]) => {
 			return line
 		})
 		.sort(orderByPivot)
-		.map(line => line.map(number => Number(number.toPrecision(16))))
+		.map(line => line.map(number => Number(number.toPrecision(14))))
 
 	return finalMatrix
 }
