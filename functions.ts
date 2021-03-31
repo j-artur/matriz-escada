@@ -6,14 +6,17 @@ export const findPivotIdx = (line: number[]) => {
 const findFactors = ([subject, model]: number[][]) => {
 	const modelPivotIdx = findPivotIdx(model)
 
-	const subFactor = subject[modelPivotIdx] !== undefined ? subject[modelPivotIdx] : 1
-	const modFactor = model[modelPivotIdx] !== undefined ? model[modelPivotIdx] : 1
+	const subFactor =
+		subject[modelPivotIdx] !== undefined ? subject[modelPivotIdx] : 1
+	const modFactor =
+		model[modelPivotIdx] !== undefined ? model[modelPivotIdx] : 1
 
 	return [subFactor, modFactor]
 }
 
 export const rationalize = (number: number, idx: number, line: number[]) => {
-	const factor = line[findPivotIdx(line)] !== undefined ? line[findPivotIdx(line)] : 1
+	const factor =
+		line[findPivotIdx(line)] !== undefined ? line[findPivotIdx(line)] : 1
 
 	return number / factor
 }
@@ -21,13 +24,15 @@ export const rationalize = (number: number, idx: number, line: number[]) => {
 export const transformLine = ([subject, model]: number[][]) => {
 	const [subFactor, modFactor] = findFactors([subject, model])
 
-	const result = subject.map((number, idx) => number * modFactor - model[idx] * subFactor)
+	const result = subject.map(
+		(number, idx) => number * modFactor - model[idx] * subFactor,
+	)
 
-	console.log('------------------------')
-	console.log(model)
-	console.log(subject, '=>', result)
+	// console.log('------------------------')
+	// console.log(model)
+	// console.log(subject, '=>', result)
 
-	return result.map(rationalize)
+	return result
 }
 
 export const orderByPivot = (first: number[], second: number[]) => {
@@ -64,6 +69,8 @@ export const transformMatrix = (matrix: number[][]) => {
 		}
 	}
 
+	console.log(temp)
+
 	const finalMatrix = temp
 		.map((line, idx, mat) => {
 			const lastIdx = mat.length - 1
@@ -81,7 +88,9 @@ export const transformMatrix = (matrix: number[][]) => {
 			return line
 		})
 		.sort(orderByPivot)
-		.map(line => line.map(number => Number(number.toPrecision(14))))
+		.map(line => line.map(number => Number(number.toPrecision(6))))
 
-	return finalMatrix
+	console.log(temp)
+
+	return finalMatrix.map(line => line.map(rationalize))
 }

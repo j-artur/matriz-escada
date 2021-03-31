@@ -1,17 +1,9 @@
 import { transformMatrix } from './functions'
 
 const matrix: number[][] = [
-	[2, 3, -1, 4, -5],
-	[1, 2, 3, 7, -6],
-	[0, 5, 2, 4, 0],
-	[0, 0, 1, 2, -7],
-	[0, 10, 4, 8, 0],
+	[4, -5, 2, 0],
+	[1, 6, 8, -1],
+	[1, 2, 3, 3],
 ]
-
-// const matrix: number[][] = [
-// 	[2, -1, 2, -4.6],
-// 	[1, 5, -3, 17],
-// 	[-4, -2, -1, -5.2],
-// ]
 
 console.log(transformMatrix(matrix))
